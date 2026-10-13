@@ -332,9 +332,52 @@
         .languages h2 { font-size: 3rem; margin-bottom: 15px; position: relative; }
         .languages .section-sub {
             font-family: 'Playfair Display', serif; font-style: italic;
-            font-size: 1.3rem; margin-bottom: 50px; opacity: 0.9;
+            font-size: 1.3rem; margin-bottom: 20px; opacity: 0.9;
             text-transform: none; font-weight: 400;
         }
+
+        /* ПОДСКАЗКА "КЛИКНИТЕ НА КАРТОЧКУ" */
+        .click-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px dashed rgba(212, 175, 55, 0.6);
+            padding: 12px 26px;
+            border-radius: 40px;
+            margin-bottom: 45px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: hint-pulse 2s infinite;
+            position: relative;
+        }
+        .click-hint-icon {
+            font-size: 1.3rem;
+            animation: hint-tap 1.5s infinite;
+            display: inline-block;
+        }
+        .click-hint-arrow {
+            color: var(--gold);
+            font-size: 1.2rem;
+            animation: hint-down 1.5s infinite;
+            display: inline-block;
+        }
+        @keyframes hint-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+        }
+        @keyframes hint-tap {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes hint-down {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
         .lang-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; position: relative; }
         .lang-card {
             background: rgba(255, 255, 255, 0.06); padding: 35px 15px;
@@ -344,7 +387,19 @@
             text-decoration: none; color: inherit;
             display: block;
             cursor: pointer;
+            animation: card-glow 3s infinite;
         }
+        .lang-grid .lang-card:nth-child(1) { animation-delay: 0s; }
+        .lang-grid .lang-card:nth-child(2) { animation-delay: 0.3s; }
+        .lang-grid .lang-card:nth-child(3) { animation-delay: 0.6s; }
+        .lang-grid .lang-card:nth-child(4) { animation-delay: 0.9s; }
+        .lang-grid .lang-card:nth-child(5) { animation-delay: 1.2s; }
+
+        @keyframes card-glow {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.15); }
+            50% { border-color: rgba(212, 175, 55, 0.7); }
+        }
+
         .lang-card::before {
             content: ''; position: absolute; top: -50%; left: -50%;
             width: 200%; height: 200%;
@@ -360,6 +415,25 @@
         .lang-flag { font-size: 2.5rem; margin-bottom: 12px; display: block; }
         .lang-card h3 { font-size: 1.3rem; margin-bottom: 10px; letter-spacing: 1px; }
         .lang-card p { font-size: 0.85rem; opacity: 0.9; line-height: 1.5; }
+
+        /* КНОПКА "ПОДРОБНЕЕ" НА КАРТОЧКЕ */
+        .lang-more {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 3px;
+            transition: all 0.3s ease;
+        }
+        .lang-card:hover .lang-more {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            letter-spacing: 2.5px;
+        }
 
         .stats { background: var(--bg-light); padding: 70px 0; border-bottom: 1px solid #eee; }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
@@ -639,6 +713,7 @@
             .form-container { padding: 40px 25px; }
             .method h2, .pricing h2, .testimonials h2, .faq h2, .languages h2 { font-size: 2rem; }
             .final-cta h2 { font-size: 2.2rem; }
+            .click-hint { font-size: 0.75rem; padding: 10px 18px; }
         }
     </style>
 </head>
@@ -725,32 +800,42 @@
     <section class="languages" id="languages">
         <div class="container">
             <h2 class="reveal">Языки для изучения</h2>
-            <p class="section-sub reveal">Выберите свой путь к новым возможностям</p>
+            <p class="section-sub reveal">Нажмите на язык, чтобы узнать подробнее — программа, цены, преимущества</p>
+            <div class="click-hint reveal">
+                <span class="click-hint-icon">👆</span>
+                <span>Кликните на карточку ниже</span>
+                <span class="click-hint-arrow">↓</span>
+            </div>
             <div class="lang-grid">
                 <a href="language.html?lang=english" class="lang-card reveal">
                     <span class="lang-flag">🇬🇧</span>
                     <h3>Английский</h3>
                     <p>От A1 до C2. Бизнес, IT, IELTS / TOEFL.</p>
+                    <span class="lang-more">Подробнее →</span>
                 </a>
                 <a href="language.html?lang=german" class="lang-card reveal">
                     <span class="lang-flag">🇩🇪</span>
                     <h3>Немецкий</h3>
                     <p>Goethe-Zertifikat. Работа и учеба в Германии.</p>
+                    <span class="lang-more">Подробнее →</span>
                 </a>
                 <a href="language.html?lang=french" class="lang-card reveal">
                     <span class="lang-flag">🇫🇷</span>
                     <h3>Французский</h3>
                     <p>DELF / DALF. Разговорный и деловой.</p>
+                    <span class="lang-more">Подробнее →</span>
                 </a>
                 <a href="language.html?lang=korean" class="lang-card reveal">
                     <span class="lang-flag">🇰🇷</span>
                     <h3>Корейский</h3>
                     <p>TOPIK. От хобби (K-Pop, дорамы) до работы.</p>
+                    <span class="lang-more">Подробнее →</span>
                 </a>
                 <a href="language.html?lang=chinese" class="lang-card reveal">
                     <span class="lang-flag">🇨🇳</span>
                     <h3>Китайский</h3>
                     <p>HSK 1–6. Постановка тонов и иероглифика.</p>
+                    <span class="lang-more">Подробнее →</span>
                 </a>
             </div>
         </div>

@@ -1,0 +1,1097 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINGUA EXPERT | Александр — преподаватель 5 языков</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5E1C24;
+            --primary-dark: #3b0f14;
+            --primary-light: #7a2a35;
+            --bg-light: #F7F7F7;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+            --gold: #D4AF37;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { text-transform: uppercase; font-weight: 900; line-height: 1.1; }
+        .script-font { font-family: 'Playfair Display', serif; font-style: italic; text-transform: none; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 16px 34px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before { left: 100%; }
+        .btn:hover { background-color: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(94, 28, 36, 0.35); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--text-light);
+            border-bottom: 5px solid var(--primary);
+            padding-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(94,28,36,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -150px; left: -150px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+
+        .social-icons { display: flex; gap: 12px; }
+        .social-icons a {
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1.5px solid #ddd;
+            border-radius: 50%;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: rotate(-8deg) scale(1.1); }
+
+        nav a.nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-left: 22px;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        nav a.nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a.nav-link:hover { color: var(--primary); }
+        nav a.nav-link:hover::after { width: 100%; }
+
+        nav .logo {
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: 2px;
+            color: var(--primary);
+            position: relative;
+        }
+
+        nav .logo::before {
+            content: '●';
+            color: var(--gold);
+            margin-right: 8px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h1 span {
+            display: block;
+            font-size: 5rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .hero-text h1 span::after {
+            content: '';
+            display: block;
+            width: 120px; height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+            margin-top: 12px;
+            border-radius: 2px;
+        }
+
+        .hero-text .subtitle {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin: 8px 0 20px;
+        }
+
+        .hero-text > p {
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #444;
+        }
+
+        .hero-badges {
+            display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;
+        }
+
+        .hero-badges span {
+            background: rgba(94, 28, 36, 0.08);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-image {
+            position: relative;
+            background-color: var(--primary);
+            border-bottom: 10px solid var(--primary);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 30px;
+            min-height: 550px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(94, 28, 36, 0.25);
+            border-radius: 8px;
+        }
+
+        .hero-img-tag {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transition: transform 8s ease;
+        }
+
+        .hero-image:hover .hero-img-tag { transform: scale(1.08); }
+
+        .hero-svg-fallback {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            display: none;
+            background-color: var(--primary);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%);
+            z-index: 1;
+        }
+
+        .hero-image .deco-circle {
+            position: absolute;
+            top: 20px; right: 20px;
+            width: 70px; height: 70px;
+            border: 2px solid rgba(212, 175, 55, 0.6);
+            border-radius: 50%;
+            z-index: 2;
+            animation: rotate 15s linear infinite;
+        }
+
+        .hero-image .deco-circle::before {
+            content: '';
+            position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px dashed rgba(212, 175, 55, 0.4);
+            border-radius: 50%;
+        }
+
+        @keyframes rotate { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+        .hero-overlay {
+            position: relative;
+            background: rgba(94, 28, 36, 0.92);
+            color: white;
+            padding: 28px 25px;
+            text-align: center;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            z-index: 2;
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .hero-image:hover .hero-overlay { transform: translateY(0); }
+
+        .hero-overlay h3 { font-size: 1.8rem; margin-bottom: 10px; letter-spacing: 3px; color: #fff; }
+        .hero-overlay p { font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; opacity: 0.95; line-height: 1.8; }
+
+        /* --- БЕГУЩАЯ СТРОКА --- */
+        .marquee {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 18px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .marquee-track { display: inline-block; animation: marquee 25s linear infinite; }
+        .marquee-track span {
+            font-size: 1.4rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 3px; margin: 0 30px;
+        }
+        .marquee-track span::before { content: '★'; color: var(--gold); margin-right: 25px; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* --- БЛОК 2: ЯЗЫКИ --- */
+        .languages {
+            background-color: var(--primary); color: var(--text-light);
+            padding: 90px 0; text-align: center; position: relative; overflow: hidden;
+        }
+        .languages::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 800px; height: 800px; transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+        .languages h2 { font-size: 3rem; margin-bottom: 15px; position: relative; }
+        .languages .section-sub {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-size: 1.3rem; margin-bottom: 50px; opacity: 0.9;
+            text-transform: none; font-weight: 400;
+        }
+        .lang-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; position: relative; }
+        .lang-card {
+            background: rgba(255, 255, 255, 0.06); padding: 35px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative; overflow: hidden; border-radius: 6px;
+        }
+        .lang-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            transform: rotate(45deg) translateX(-100%); transition: transform 0.6s ease;
+        }
+        .lang-card:hover::before { transform: rotate(45deg) translateX(100%); }
+        .lang-card:hover {
+            background: var(--text-light); color: var(--primary);
+            transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--gold);
+        }
+        .lang-flag { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+        .lang-card h3 { font-size: 1.3rem; margin-bottom: 10px; letter-spacing: 1px; }
+        .lang-card p { font-size: 0.85rem; opacity: 0.9; line-height: 1.5; }
+
+        /* --- СТАТИСТИКА --- */
+        .stats { background: var(--bg-light); padding: 70px 0; border-bottom: 1px solid #eee; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+        .stat-item h3 { font-size: 3.5rem; color: var(--primary); font-weight: 900; line-height: 1; margin-bottom: 8px; }
+        .stat-item p { text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; font-weight: 600; color: #666; }
+        .stat-item .plus { color: var(--gold); }
+
+        /* --- БЛОК 3: ОБО МНЕ --- */
+        .about {
+            padding: 100px 0; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 70px; align-items: center;
+        }
+        .about-img-wrap { 
+            position: relative;
+            height: 700px;
+            border-radius: 6px;
+            background-color: var(--primary);
+            background-image: 
+                repeating-linear-gradient(45deg, 
+                    rgba(212, 175, 55, 0.18) 0px, rgba(212, 175, 55, 0.18) 2px,
+                    transparent 2px, transparent 24px),
+                repeating-linear-gradient(-45deg, 
+                    rgba(212, 175, 55, 0.18) 0px, rgba(212, 175, 55, 0.18) 2px,
+                    transparent 2px, transparent 24px),
+                radial-gradient(circle at 50% 50%, rgba(122, 42, 53, 0.7) 0%, rgba(59, 15, 20, 0.98) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-shadow: 0 30px 60px rgba(94, 28, 36, 0.25);
+        }
+        
+        .about-img-real {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            position: relative;
+            z-index: 2;
+            display: block;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .about-img-wrap::before { display: none; }
+
+        .about-img-wrap::after {
+            content: '10+ лет'; position: absolute; bottom: -30px; right: -30px;
+            background: var(--gold); color: var(--text-dark); padding: 25px 30px;
+            font-weight: 900; font-size: 1.3rem; border-radius: 6px; z-index: 3;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15); text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .about-text h2 { font-size: 3rem; color: var(--primary); margin-bottom: 25px; }
+        .about-text h2 span {
+            display: block; font-family: 'Playfair Display', serif;
+            font-style: italic; text-transform: none; font-size: 1.8rem;
+            color: var(--text-dark); font-weight: 400; margin-top: 8px;
+        }
+        .about-text p { margin-bottom: 18px; font-size: 1.05rem; color: #444; }
+
+        .skills { margin: 30px 0; }
+        .skill { margin-bottom: 18px; }
+        .skill-head { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .skill-head span:last-child { color: var(--primary); }
+        .skill-bar { background: #e5e5e5; height: 8px; border-radius: 4px; overflow: hidden; }
+        .skill-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 4px; width: 0; transition: width 1.5s ease; }
+        .skill:nth-child(1) .skill-fill { width: 100%; }
+        .skill:nth-child(2) .skill-fill { width: 95%; }
+        .skill:nth-child(3) .skill-fill { width: 90%; }
+        .skill:nth-child(4) .skill-fill { width: 85%; }
+        .skill:nth-child(5) .skill-fill { width: 80%; }
+
+        /* --- БЛОК 4: МЕТОДИКА --- */
+        .method {
+            background-color: var(--text-light); padding: 100px 0;
+            border-top: 5px solid var(--primary); border-bottom: 5px solid var(--primary);
+            position: relative;
+        }
+        .method h2 { font-size: 3rem; text-align: center; margin-bottom: 15px; color: var(--primary); }
+        .method .section-sub {
+            text-align: center; font-family: 'Playfair Display', serif;
+            font-style: italic; font-size: 1.3rem; margin-bottom: 60px; color: #666;
+        }
+        .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .method-card {
+            border: 2px solid var(--primary); padding: 45px 30px; text-align: center;
+            transition: all 0.4s ease; position: relative; background: var(--text-light);
+        }
+        .method-card::before {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 0; background: var(--primary);
+            transition: height 0.4s ease; z-index: 0;
+        }
+        .method-card:hover::before { height: 100%; }
+        .method-card:hover { color: var(--text-light); transform: translateY(-8px); }
+        .method-card:hover h3 { color: var(--text-light); }
+        .method-card:hover .method-num { color: var(--gold); }
+        .method-card > * { position: relative; z-index: 1; }
+        .method-num { font-size: 3rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 15px; transition: color 0.4s ease; }
+        .method-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--primary); transition: color 0.4s ease; }
+
+        /* --- БЛОК 5: УСЛУГИ И ЦЕНЫ --- */
+        .pricing { padding: 100px 0; background-color: var(--bg-light); }
+        .pricing h2 { font-size: 3rem; text-align: center; margin-bottom: 15px; color: var(--primary); }
+        .pricing .section-sub { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; margin-bottom: 60px; color: #666; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
+        .price-card {
+            background: var(--text-light); padding: 45px 35px;
+            border-top: 8px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            text-align: center; transition: all 0.4s ease;
+            position: relative; border-radius: 0 0 6px 6px;
+        }
+        .price-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(94, 28, 36, 0.15); }
+        .price-card.popular {
+            transform: scale(1.06); border-top: 8px solid var(--gold);
+            box-shadow: 0 25px 60px rgba(94, 28, 36, 0.2); position: relative;
+        }
+        .price-card.popular::before {
+            content: 'ХИТ ВЫБОРА'; position: absolute; top: -18px; left: 50%;
+            transform: translateX(-50%); background: var(--gold); color: var(--text-dark);
+            padding: 6px 18px; font-size: 0.75rem; font-weight: 900;
+            letter-spacing: 2px; border-radius: 20px;
+        }
+        .price-card.popular:hover { transform: scale(1.06) translateY(-10px); }
+        .price-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+        .price-card .price { font-size: 3rem; font-weight: 900; color: var(--primary); margin-bottom: 25px; line-height: 1; }
+        .price-card .price small { font-size: 1rem; color: #999; font-weight: 500; display: block; margin-top: 6px; }
+        .price-card ul { list-style: none; margin-bottom: 30px; text-align: left; padding: 0 5px; }
+        .price-card ul li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 0.95rem; }
+        .price-card ul li::before {
+            content: "✓"; color: var(--primary); position: absolute; left: 0;
+            font-weight: 900; background: rgba(94, 28, 36, 0.1); width: 18px; height: 18px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 11px; top: 4px;
+        }
+
+        .form-container {
+            max-width: 650px; margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 60px 50px; color: var(--text-light); text-align: center;
+            border-radius: 8px; box-shadow: 0 30px 60px rgba(94, 28, 36, 0.3);
+            position: relative; overflow: hidden;
+        }
+        .form-container::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
+            border-radius: 50%;
+        }
+        .form-container h3 { font-size: 2rem; margin-bottom: 15px; position: relative; }
+        .form-container > p { margin-bottom: 30px; opacity: 0.9; position: relative; }
+        .form-container form { position: relative; z-index: 1; }
+        .form-container input, .form-container select {
+            width: 100%; padding: 16px 18px; margin-bottom: 14px;
+            border: 2px solid transparent; font-family: inherit;
+            font-size: 0.95rem; border-radius: 4px; transition: all 0.3s ease;
+            background: rgba(255,255,255,0.95);
+        }
+        .form-container input:focus, .form-container select:focus {
+            outline: none; border-color: var(--gold); background: #fff;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+        .form-container .btn { background-color: var(--gold); color: var(--text-dark); width: 100%; font-size: 1rem; padding: 18px; margin-top: 8px; }
+        .form-container .btn:hover { background-color: #fff; color: var(--primary); }
+
+        /* --- БЛОК 6: ОТЗЫВЫ --- */
+        .testimonials { background-color: var(--primary); color: var(--text-light); padding: 100px 0; position: relative; overflow: hidden; }
+        .testimonials::before {
+            content: '“'; position: absolute; top: 30px; left: 40px;
+            font-size: 20rem; font-family: 'Playfair Display', serif;
+            color: rgba(255,255,255,0.05); line-height: 1;
+        }
+        .testimonials h2 { font-size: 3rem; text-align: center; margin-bottom: 15px; position: relative; }
+        .testimonials .section-sub { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; margin-bottom: 60px; opacity: 0.85; }
+        .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; position: relative; }
+        .review-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px; transition: all 0.4s ease;
+            border-radius: 6px; backdrop-filter: blur(6px);
+        }
+        .review-card:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-6px); border-color: var(--gold); }
+        .review-stars { color: var(--gold); font-size: 1.2rem; margin-bottom: 18px; letter-spacing: 3px; }
+        .review-card p { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; line-height: 1.7; }
+        .review-author { display: flex; align-items: center; gap: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+        .review-avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; color: #fff; font-size: 1.1rem;
+            border: 2px solid var(--gold); flex-shrink: 0;
+        }
+        .av-1 { background: linear-gradient(135deg, #d4af37, #b8941f); }
+        .av-2 { background: linear-gradient(135deg, #7a2a35, #5E1C24); }
+        .av-3 { background: linear-gradient(135deg, #2c5f5d, #1a3b3a); }
+        .av-4 { background: linear-gradient(135deg, #6b4423, #4a2d16); }
+
+        /* --- FAQ --- */
+        .faq { padding: 100px 0; background: var(--bg-light); }
+        .faq h2 { font-size: 3rem; text-align: center; margin-bottom: 15px; color: var(--primary); }
+        .faq .section-sub { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; margin-bottom: 50px; color: #666; }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: var(--text-light); margin-bottom: 12px; border-radius: 6px;
+            overflow: hidden; transition: box-shadow 0.3s ease; border-left: 4px solid var(--primary);
+        }
+        .faq-item:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .faq-q {
+            padding: 22px 25px; cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
+            font-weight: 700; font-size: 1.05rem; user-select: none;
+            transition: color 0.3s ease;
+        }
+        .faq-q:hover { color: var(--primary); }
+        .faq-q::after { content: '+'; font-size: 1.6rem; color: var(--primary); font-weight: 300; transition: transform 0.3s ease; line-height: 1; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; padding: 0 25px; color: #555; }
+        .faq-item.open .faq-a { max-height: 300px; padding: 0 25px 22px; }
+
+        /* --- БЛОК 7: ПРИЗЫВ --- */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light); padding: 120px 0; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .final-cta::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 900px; height: 900px; transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 60%);
+            border-radius: 50%;
+        }
+        .final-cta h2 { font-size: 3.5rem; margin-bottom: 20px; position: relative; color: #fff; }
+        .final-cta h2 span {
+            display: block; font-family: 'Playfair Display', serif;
+            font-style: italic; text-transform: none; font-weight: 400;
+            font-size: 2rem; color: var(--gold); margin-top: 15px;
+        }
+        .final-cta p { font-size: 1.15rem; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.95; position: relative; }
+        .final-cta .btn { background-color: var(--gold); color: var(--text-dark); font-size: 1.1rem; padding: 22px 50px; position: relative; }
+        .final-cta .btn:hover { background-color: #fff; transform: translateY(-4px) scale(1.02); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--text-dark); color: #999; padding: 40px 0; text-align: center; font-size: 0.85rem; }
+        footer .footer-logo { color: #fff; font-weight: 900; letter-spacing: 3px; font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; }
+        footer .social-icons { justify-content: center; margin-top: 15px; }
+        footer .social-icons a { color: #999; border-color: #444; }
+        footer .social-icons a:hover { color: #fff; }
+
+        /* --- ПЛАВАЮЩАЯ КНОПКА --- */
+        .float-contact {
+            position: fixed; bottom: 25px; right: 25px;
+            width: 62px; height: 62px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; text-decoration: none;
+            box-shadow: 0 10px 30px rgba(94, 28, 36, 0.5);
+            z-index: 999; transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .float-contact:hover { transform: scale(1.15) rotate(-10deg); }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(94, 28, 36, 0.5); }
+            50% { box-shadow: 0 10px 30px rgba(94, 28, 36, 0.5), 0 0 0 15px rgba(94, 28, 36, 0.15); }
+        }
+
+        /* АДАПТИВ */
+        @media (max-width: 900px) {
+            .hero, .about, .reviews-grid { grid-template-columns: 1fr; }
+            .lang-grid, .method-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .hero-text h1 span { font-size: 3.2rem; }
+            .hero-text .subtitle { font-size: 1.5rem; }
+            .price-card.popular { transform: scale(1); }
+            nav { flex-direction: column; gap: 15px; text-align: center; }
+            nav .nav-left { flex-direction: column; }
+            nav div:last-child { display: flex; flex-direction: column; gap: 10px; }
+            nav a.nav-link { margin: 0; }
+            .hero-image { min-height: 420px; }
+            .about-img-wrap { height: 500px; }
+            .about-img-wrap::after { right: 10px; bottom: -20px; padding: 18px 22px; font-size: 1rem; }
+            .form-container { padding: 40px 25px; }
+            .method h2, .pricing h2, .testimonials h2, .faq h2, .languages h2 { font-size: 2rem; }
+            .final-cta h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-left">
+                    <div class="logo">LINGUA EXPERT</div>
+                    <div class="social-icons">
+                        <a href="#" title="Telegram">✈</a>
+                        <a href="#" title="Instagram">◎</a>
+                        <a href="#" title="YouTube">▶</a>
+                        <a href="#" title="WhatsApp">✆</a>
+                    </div>
+                </div>
+                <div>
+                    <a class="nav-link" href="#languages">Языки</a>
+                    <a class="nav-link" href="#about">Обо мне</a>
+                    <a class="nav-link" href="#method">Методика</a>
+                    <a class="nav-link" href="#pricing">Цены</a>
+                    <a class="nav-link" href="#contact">Контакты</a>
+                </div>
+            </nav>
+
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>ЗАГОВОРИТЕ НА <span>5 ЯЗЫКАХ</span></h1>
+                    <p class="script-font subtitle">с экспертом международного уровня</p>
+                    <p>Авторская методика без зубрежки. Первый ощутимый результат — уже через 2 недели занятий. Поставлю правильное произношение, сниму языковой барьер и подготовлю к экзаменам международного уровня.</p>
+                    <div class="hero-badges">
+                        <span>✓ CELTA / DELF</span>
+                        <span>✓ Goethe-Institut</span>
+                        <span>✓ HSK / TOPIK</span>
+                    </div>
+                    <a href="#contact" class="btn">Записаться на диагностику</a>
+                </div>
+
+                <div class="hero-image">
+                    <img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800"
+                         alt="Глобус и наушники"
+                         class="hero-img-tag"
+                         onerror="this.style.display='none'; document.getElementById('fallback-svg').style.display='block';">
+
+                    <svg id="fallback-svg" class="hero-svg-fallback" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <radialGradient id="globeGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#7a2a35"/>
+                                <stop offset="100%" stop-color="#5E1C24"/>
+                            </radialGradient>
+                        </defs>
+                        <rect width="100" height="100" fill="url(#globeGrad)"/>
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <ellipse cx="50" cy="50" rx="15" ry="35" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <ellipse cx="50" cy="50" rx="30" ry="35" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <line x1="15" y1="50" x2="85" y2="50" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <path d="M30,40 A20,20 0 0,1 70,40" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
+                        <rect x="25" y="40" width="6" height="15" rx="3" fill="rgba(255,255,255,0.9)"/>
+                        <rect x="69" y="40" width="6" height="15" rx="3" fill="rgba(255,255,255,0.9)"/>
+                        <path d="M40,60 L40,55 M45,60 L45,50 M50,60 L50,45 M55,60 L55,50 M60,60 L60,55" stroke="rgba(212,175,55,0.8)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+
+                    <div class="deco-circle"></div>
+
+                    <div class="hero-overlay">
+                        <h3>5 ЯЗЫКОВ</h3>
+                        <p>Английский • Немецкий • Французский<br>Корейский • Китайский</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- БЕГУЩАЯ СТРОКА -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>Английский</span><span>Deutsch</span><span>Français</span><span>한국어</span><span>中文</span>
+            <span>Английский</span><span>Deutsch</span><span>Français</span><span>한국어</span><span>中文</span>
+        </div>
+    </div>
+
+    <!-- БЛОК 2: ЯЗЫКИ -->
+    <section class="languages" id="languages">
+        <div class="container">
+            <h2 class="reveal">Языки для изучения</h2>
+            <p class="section-sub reveal">Выберите свой путь к новым возможностям</p>
+            <div class="lang-grid">
+                <div class="lang-card reveal">
+                    <span class="lang-flag">🇬🇧</span>
+                    <h3>Английский</h3>
+                    <p>От A1 до C2. Бизнес, IT, IELTS / TOEFL.</p>
+                </div>
+                <div class="lang-card reveal">
+                    <span class="lang-flag">🇩🇪</span>
+                    <h3>Немецкий</h3>
+                    <p>Goethe-Zertifikat. Работа и учеба в Германии.</p>
+                </div>
+                <div class="lang-card reveal">
+                    <span class="lang-flag">🇫🇷</span>
+                    <h3>Французский</h3>
+                    <p>DELF / DALF. Разговорный и деловой.</p>
+                </div>
+                <div class="lang-card reveal">
+                    <span class="lang-flag">🇰🇷</span>
+                    <h3>Корейский</h3>
+                    <p>TOPIK. От хобби (K-Pop, дорамы) до работы.</p>
+                </div>
+                <div class="lang-card reveal">
+                    <span class="lang-flag">🇨🇳</span>
+                    <h3>Китайский</h3>
+                    <p>HSK 1–6. Постановка тонов и иероглифика.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТАТИСТИКА -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <h3 data-count="500">0<span class="plus">+</span></h3>
+                    <p>Довольных студентов</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 data-count="10">0<span class="plus">+</span></h3>
+                    <p>Лет опыта</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 data-count="5">0</h3>
+                    <p>Языков в арсенале</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 data-count="98">0<span class="plus">%</span></h3>
+                    <p>Сдают экзамены с 1 раза</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 3: ОБО МНЕ -->
+    <section class="about container" id="about">
+        <div class="about-img-wrap reveal">
+            <img src="teacher.jpg" alt="Александр — преподаватель иностранных языков" class="about-img-real">
+        </div>
+        <div class="about-text reveal">
+            <h2>Ваш проводник <span>в мир языков</span></h2>
+            <p>Меня зовут <strong>Александр</strong>. Я профессиональный лингвист и полиглот. Более 10 лет помогаю студентам не просто учить правила, а жить на языке.</p>
+            <p>Имею международные сертификаты (CELTA, DELF, Goethe-Zertifikat) и опыт жизни в 4 странах. Я знаю, как преодолеть языковой барьер, потому что прошёл этот путь сам — 5 раз.</p>
+
+            <div class="skills">
+                <div class="skill">
+                    <div class="skill-head"><span>Английский</span><span>C2</span></div>
+                    <div class="skill-bar"><div class="skill-fill"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-head"><span>Немецкий</span><span>C1</span></div>
+                    <div class="skill-bar"><div class="skill-fill"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-head"><span>Французский</span><span>C1</span></div>
+                    <div class="skill-bar"><div class="skill-fill"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-head"><span>Корейский</span><span>TOPIK 5</span></div>
+                    <div class="skill-bar"><div class="skill-fill"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-head"><span>Китайский</span><span>HSK 5</span></div>
+                    <div class="skill-bar"><div class="skill-fill"></div></div>
+                </div>
+            </div>
+
+            <a href="#contact" class="btn" style="margin-top: 15px;">Начать обучение</a>
+        </div>
+    </section>
+
+    <!-- БЛОК 4: МЕТОДИКА -->
+    <section class="method" id="method">
+        <div class="container">
+            <h2 class="reveal">Почему будет результат?</h2>
+            <p class="section-sub reveal">3 принципа, которые меняют всё</p>
+            <div class="method-grid">
+                <div class="method-card reveal">
+                    <div class="method-num">01</div>
+                    <h3>80% Практики</h3>
+                    <p>Мы не заучиваем правила. Мы сразу начинаем говорить, имитируя реальные жизненные ситуации: кафе, аэропорт, собеседование.</p>
+                </div>
+                <div class="method-card reveal">
+                    <div class="method-num">02</div>
+                    <h3>Психология</h3>
+                    <p>Снимаю блоки и страх ошибок. Создаю комфортную среду, где вы не боитесь говорить — а значит, прогрессируете в 3 раза быстрее.</p>
+                </div>
+                <div class="method-card reveal">
+                    <div class="method-num">03</div>
+                    <h3>Системный подход</h3>
+                    <p>Индивидуальный план под ваши цели. Никаких универсальных учебников — только то, что реально нужно именно вам.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 5: УСЛУГИ И ЦЕНЫ -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="reveal">Выберите свой формат</h2>
+            <p class="section-sub reveal">Прозрачные цены. Никаких скрытых платежей</p>
+
+            <div class="pricing-grid">
+                <div class="price-card reveal">
+                    <h3>Разговорный клуб</h3>
+                    <div class="price">2 500 ₽ <small>за занятие</small></div>
+                    <ul>
+                        <li>Группы до 5 человек</li>
+                        <li>2 раза в неделю</li>
+                        <li>Снятие языкового барьера</li>
+                        <li>Игровой формат</li>
+                        <li>Чат поддержки 24/7</li>
+                    </ul>
+                    <a href="#contact" class="btn" onclick="selectTariff('Разговорный клуб')">Выбрать</a>
+                </div>
+
+                <div class="price-card popular reveal">
+                    <h3>Индивидуальный интенсив</h3>
+                    <div class="price">4 500 ₽ <small>за час</small></div>
+                    <ul>
+                        <li>Личный план обучения</li>
+                        <li>Гибкий график</li>
+                        <li>Быстрый результат</li>
+                        <li>Домашние задания с проверкой</li>
+                        <li>Разбор ваших кейсов</li>
+                    </ul>
+                    <a href="#contact" class="btn" onclick="selectTariff('Индивидуальный интенсив')">Выбрать</a>
+                </div>
+
+                <div class="price-card reveal">
+                    <h3>VIP-сопровождение</h3>
+                    <div class="price">от 150 000 ₽ <small>в месяц</small></div>
+                    <ul>
+                        <li>Полное погружение в среду</li>
+                        <li>Поддержка 24/7</li>
+                        <li>Подготовка к релокации</li>
+                        <li>Культурный код страны</li>
+                        <li>Персональный куратор</li>
+                    </ul>
+                    <a href="#contact" class="btn" onclick="selectTariff('VIP-сопровождение')">Выбрать</a>
+                </div>
+            </div>
+
+            <!-- ФОРМА -->
+            <div class="form-container reveal" id="contact">
+                <h3>Бесплатная диагностика</h3>
+                <p>Определим ваш уровень и составим план обучения за 30 минут</p>
+                <form onsubmit="submitForm(event)">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="tel" placeholder="Телефон или Telegram" required>
+                    <select id="tariff-select" required>
+                        <option value="">Какой язык вас интересует?</option>
+                        <option value="Английский">Английский</option>
+                        <option value="Немецкий">Немецкий</option>
+                        <option value="Французский">Французский</option>
+                        <option value="Корейский">Корейский</option>
+                        <option value="Китайский">Китайский</option>
+                    </select>
+                    <button type="submit" class="btn">Получить план обучения</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 6: ОТЗЫВЫ -->
+    <section class="testimonials" id="reviews">
+        <div class="container">
+            <h2 class="reveal">Истории успеха</h2>
+            <p class="section-sub reveal">Реальные результаты моих студентов</p>
+
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p>«С Александром я сдала IELTS на 7.5 за 3 месяца! До этого учила английский 10 лет и не могла говорить. Методика полностью перевернула моё представление об обучении. Переехала в Канаду!»</p>
+                    <div class="review-author">
+                        <div class="review-avatar av-1">А</div>
+                        <div>Анна, 28 лет<br><small style="opacity:0.6; font-weight:400;">Переезд в Канаду</small></div>
+                    </div>
+                </div>
+
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p>«Корейский с нуля до TOPIK 3 за год. Очень интересные уроки, много разговорной практики. Сейчас спокойно смотрю дорамы в оригинале и понимаю 80% без субтитров.»</p>
+                    <div class="review-author">
+                        <div class="review-avatar av-2">Д</div>
+                        <div>Дмитрий, 34 года<br><small style="opacity:0.6; font-weight:400;">TOPIK 3</small></div>
+                    </div>
+                </div>
+
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p>«Занимался немецким для релокации. Александр не только дал язык, но и подготовил к собеседованию в немецкую компанию. Оффер получен! Огромное спасибо!»</p>
+                    <div class="review-author">
+                        <div class="review-avatar av-3">И</div>
+                        <div>Игорь, 41 год<br><small style="opacity:0.6; font-weight:400;">Оффер в Германии</small></div>
+                    </div>
+                </div>
+
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p>«Китайский казался чем-то нереальным. Но с профессиональным подходом и поддержкой я уже читаю и пишу иероглифы. Сдала HSK 2 с высоким баллом!»</p>
+                    <div class="review-author">
+                        <div class="review-avatar av-4">М</div>
+                        <div>Мария, 22 года<br><small style="opacity:0.6; font-weight:400;">HSK 2</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="reveal">Частые вопросы</h2>
+            <p class="section-sub reveal">Отвечаю на то, что волнует больше всего</p>
+
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">С какого возраста можно начинать обучение?</div>
+                    <div class="faq-a"><p>Я работаю со студентами от 14 лет и старше. Для детей младшего возраста рекомендую игровой формат — уточните при заявке.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">Сколько нужно заниматься, чтобы заговорить?</div>
+                    <div class="faq-a"><p>Первый результат вы почувствуете через 2–3 недели регулярных занятий. Для свободного владения на уровне B2 обычно требуется от 8 до 12 месяцев в зависимости от вашей стартовой точки и вовлечённости.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">Занятия проходят онлайн или офлайн?</div>
+                    <div class="faq-a"><p>Формат выбираете вы. Занятия проходят онлайн (Zoom / Skype) с интерактивной доской, либо офлайн (при наличии свободных окон в вашем городе).</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">Что если я не увижу результат?</div>
+                    <div class="faq-a"><p>У нас действует гарантия результата: если после 3 занятий вы не увидите прогресс — я верну деньги. За 10 лет практики такого ни разу не потребовалось.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">Можно ли заниматься с нуля?</div>
+                    <div class="faq-a"><p>Конечно! Большинство моих студентов начинают с полного нуля. Мы выстроим пошаговый план и будем двигаться в комфортном темпе — без стресса и перегрузок.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 7: ФИНАЛЬНЫЙ ПРИЗЫВ -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="reveal">Язык — это ваш пропуск <span>в новую жизнь</span></h2>
+            <p class="reveal">Не откладывайте мечты на завтра. Начните говорить на новом языке уже в этом месяце. Количество мест на индивидуальные занятия ограничено.</p>
+            <a href="#contact" class="btn reveal">Забронировать место со скидкой 20%</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">LINGUA EXPERT</div>
+            <p>© 2026 Все права защищены. Профессиональное обучение иностранным языкам.</p>
+            <div class="social-icons">
+                <a href="#" title="Telegram">✈</a>
+                <a href="#" title="Instagram">◎</a>
+                <a href="#" title="YouTube">▶</a>
+                <a href="#" title="WhatsApp">✆</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ПЛАВАЮЩАЯ КНОПКА -->
+    <a href="#contact" class="float-contact" title="Написать в Telegram">✈</a>
+
+    <!-- СКРИПТЫ -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('active'), i * 80);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const counters = document.querySelectorAll('[data-count]');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.done) {
+                    entry.target.dataset.done = 'true';
+                    const target = +entry.target.dataset.count;
+                    let current = 0;
+                    const step = Math.ceil(target / 60);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        const plus = entry.target.querySelector('.plus');
+                        entry.target.textContent = current;
+                        if (plus) entry.target.appendChild(plus);
+                    }, 25);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => counterObserver.observe(c));
+
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+
+        function selectTariff(name) {
+            const select = document.getElementById('tariff-select');
+            if (select) select.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                select.focus();
+                select.style.boxShadow = '0 0 0 4px rgba(212, 175, 55, 0.5)';
+                setTimeout(() => select.style.boxShadow = '', 1500);
+            }, 500);
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const name = event.target.querySelector('input[type="text"]').value;
+            const contact = event.target.querySelector('input[type="tel"]').value;
+            const btn = event.target.querySelector('.btn');
+            const original = btn.textContent;
+            btn.textContent = '✓ Отправлено!';
+            btn.style.background = '#28a745';
+            btn.style.color = '#fff';
+
+            setTimeout(() => {
+                alert('Спасибо, ' + name + '! Ваша заявка принята.\nАлександр свяжется с вами по контакту: ' + contact + ' в течение 15 минут.');
+                btn.textContent = original;
+                btn.style.background = '';
+                btn.style.color = '';
+                event.target.reset();
+            }, 800);
+        }
+    </script>
+</body>
+</html>

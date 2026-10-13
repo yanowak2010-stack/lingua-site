@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изучение языка | LINGUA EXPERT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5E1C24;
+            --primary-dark: #3b0f14;
+            --primary-light: #7a2a35;
+            --bg-light: #F7F7F7;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+            --gold: #D4AF37;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { text-transform: uppercase; font-weight: 900; line-height: 1.1; }
+        .script-font { font-family: 'Playfair Display', serif; font-style: italic; text-transform: none; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 16px 34px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn:hover { background-color: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(94, 28, 36, 0.35); }
+
+        header { background: var(--text-light); border-bottom: 5px solid var(--primary); padding: 20px 0; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-weight: 900; font-size: 22px; letter-spacing: 2px;
+            color: var(--primary); text-decoration: none;
+        }
+        .logo::before { content: '●'; color: var(--gold); margin-right: 8px; font-size: 14px; vertical-align: middle; }
+        .back-link {
+            color: var(--text-dark); text-decoration: none; font-weight: 600;
+            text-transform: uppercase; font-size: 13px; letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--primary); }
+
+        .lang-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .lang-hero::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 800px; height: 800px; transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(212,175,55,0.15), transparent 60%);
+            border-radius: 50%;
+        }
+        .lang-hero-inner { position: relative; z-index: 1; }
+        .lang-flag-big { font-size: 5rem; display: block; margin-bottom: 15px; }
+        .lang-hero h1 {
+            font-size: 4rem;
+            color: #fff;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+        .lang-hero h1 span { color: var(--gold); }
+        .lang-hero .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.6rem;
+            color: #fff;
+            opacity: 0.95;
+            margin-bottom: 25px;
+        }
+        .lang-hero p {
+            max-width: 700px;
+            margin: 0 auto 35px;
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        .lang-hero .btn {
+            background-color: var(--gold);
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            padding: 20px 45px;
+        }
+        .lang-hero .btn:hover { background-color: #fff; }
+
+        .section { padding: 80px 0; }
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .section-sub {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .benefit-card {
+            background: var(--text-light);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border-top: 5px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+        .benefit-card:hover { transform: translateY(-8px); box-shadow: 0 20px 45px rgba(94,28,36,0.15); }
+        .benefit-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+        .benefit-card h3 { font-size: 1.3rem; color: var(--primary); margin-bottom: 12px; }
+        .benefit-card p { color: #555; font-size: 0.95rem; }
+
+        .program { background: var(--text-light); }
+        .program-list { max-width: 900px; margin: 0 auto; }
+        .program-item {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            padding: 25px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        .program-item:last-child { border-bottom: none; }
+        .program-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            flex-shrink: 0;
+            min-width: 70px;
+        }
+        .program-content h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 8px; }
+        .program-content p { color: #555; }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .price-card {
+            background: var(--text-light);
+            padding: 45px 35px;
+            border-top: 8px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: all 0.4s ease;
+            border-radius: 0 0 6px 6px;
+            position: relative;
+        }
+        .price-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(94,28,36,0.15); }
+        .price-card.popular {
+            transform: scale(1.06);
+            border-top: 8px solid var(--gold);
+            box-shadow: 0 25px 60px rgba(94,28,36,0.2);
+        }
+        .price-card.popular::before {
+            content: 'ХИТ ВЫБОРА';
+            position: absolute; top: -18px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold); color: var(--text-dark);
+            padding: 6px 18px; font-size: 0.75rem; font-weight: 900;
+            letter-spacing: 2px; border-radius: 20px;
+        }
+        .price-card.popular:hover { transform: scale(1.06) translateY(-10px); }
+        .price-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+        .price-card .price { font-size: 2.8rem; font-weight: 900; color: var(--primary); margin-bottom: 25px; line-height: 1; }
+        .price-card .price small { font-size: 1rem; color: #999; font-weight: 500; display: block; margin-top: 6px; }
+        .price-card ul { list-style: none; margin-bottom: 30px; text-align: left; padding: 0 5px; }
+        .price-card ul li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 0.95rem; }
+        .price-card ul li::before {
+            content: "✓"; color: var(--primary); position: absolute; left: 0;
+            font-weight: 900; background: rgba(94,28,36,0.1);
+            width: 18px; height: 18px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; top: 4px;
+        }
+
+        .form-container {
+            max-width: 650px; margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 60px 50px; color: var(--text-light);
+            text-align: center; border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(94,28,36,0.3);
+            position: relative; overflow: hidden;
+        }
+        .form-container::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15), transparent 70%);
+            border-radius: 50%;
+        }
+        .form-container h3 { font-size: 2rem; margin-bottom: 15px; position: relative; }
+        .form-container > p { margin-bottom: 30px; opacity: 0.9; position: relative; }
+        .form-container form { position: relative; z-index: 1; }
+        .form-container input, .form-container select {
+            width: 100%; padding: 16px 18px; margin-bottom: 14px;
+            border: 2px solid transparent; font-family: inherit;
+            font-size: 0.95rem; border-radius: 4px;
+            transition: all 0.3s ease; background: rgba(255,255,255,0.95);
+        }
+        .form-container input:focus, .form-container select:focus {
+            outline: none; border-color: var(--gold); background: #fff;
+            box-shadow: 0 0 0 4px rgba(212,175,55,0.2);
+        }
+        .form-container .btn {
+            background-color: var(--gold); color: var(--text-dark);
+            width: 100%; font-size: 1rem; padding: 18px; margin-top: 8px;
+        }
+        .form-container .btn:hover { background-color: #fff; color: var(--primary); }
+
+        footer { background: var(--text-dark); color: #999; padding: 40px 0; text-align: center; font-size: 0.85rem; }
+        footer .footer-logo { color: #fff; font-weight: 900; letter-spacing: 3px; font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @media (max-width: 900px) {
+            .benefits-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .lang-hero h1 { font-size: 2.5rem; }
+            .lang-hero .subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .price-card.popular { transform: scale(1); }
+            .program-num { font-size: 1.8rem; min-width: 50px; }
+            .form-container { padding: 40px 25px; }
+            .header-inner { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">LINGUA EXPERT</a>
+            <a href="index.html" class="back-link">← Вернуться на главную</a>
+        </div>
+    </header>
+
+    <section class="lang-hero">
+        <div class="container lang-hero-inner">
+            <span class="lang-flag-big" id="langFlag">🇬🇧</span>
+            <h1>Изучение <span id="langName">Английского</span></h1>
+            <p class="subtitle" id="langTagline">с экспертом международного уровня</p>
+            <p id="langDescription">Заговорите свободно и уверенно.</p>
+            <a href="#contact" class="btn">Записаться на бесплатный урок</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" id="whyTitle">Зачем учить этот язык?</h2>
+            <p class="section-sub">6 причин начать прямо сейчас</p>
+            <div class="benefits-grid" id="benefitsGrid"></div>
+        </div>
+    </section>
+
+    <section class="section program">
+        <div class="container">
+            <h2 class="section-title">Что вас ждёт на курсе</h2>
+            <p class="section-sub">Программа, адаптированная под ваши цели</p>
+            <div class="program-list" id="programList"></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Тарифы на обучение</h2>
+            <p class="section-sub">Прозрачные цены. Никаких скрытых платежей</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Разговорный клуб</h3>
+                    <div class="price">2 500 ₽ <small>за занятие</small></div>
+                    <ul>
+                        <li>Группы до 5 человек</li>
+                        <li>2 раза в неделю</li>
+                        <li>Снятие языкового барьера</li>
+                        <li>Игровой формат</li>
+                        <li>Чат поддержки 24/7</li>
+                    </ul>
+                    <a href="#contact" class="btn" onclick="selectTariff('Разговорный клуб')">Выбрать</a>
+                </div>
+                <div class="price-card popular">
+                    <h3>Индивидуальный интенсив</h3>
+                    <div class="price">4 500 ₽ <small>за час</small></div>
+                    <ul>
+                        <li>Личный план обучения</li>
+                        <li>Гибкий график</li>
+                        <li>Быстрый результат</li>
+                        <li>Домашние задания с проверкой</li>
+                        <li>Разбор ваших кейсов</li>
+                    </ul>
+                    <a href="#contact" class="btn" onclick="selectTariff('Индивидуальный интенсив')">Выбрать</a>
+                </div>
+                <div class="price-card">
+                    <h3>VIP-сопровождение</h3>
+                    <div class="price">от 150 000 ₽ <small>в месяц</small></div>
+                    <ul>
+                        <li>Полное погружение в среду</li>
+                        <li>Поддержка 24/7</li>
+                        <li>Подготовка к релокации</li>
+                        <li>Культурный код страны</li>
+                        <li>Персональный куратор</li>
+                    </ul>
+                    <a href="#contact" class="btn" onclick="selectTariff('VIP-сопровождение')">Выбрать</a>
+                </div>
+            </div>
+
+            <div class="form-container" id="contact">
+                <h3>Записаться на бесплатный урок</h3>
+                <p>30 минут — определим ваш уровень и составим план обучения</p>
+                <form onsubmit="submitForm(event)">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="tel" placeholder="Телефон или Telegram" required>
+                    <select id="tariff-select" required>
+                        <option value="">Что вас интересует?</option>
+                        <option value="Разговорный клуб">Разговорный клуб</option>
+                        <option value="Индивидуальный интенсив">Индивидуальный интенсив</option>
+                        <option value="VIP-сопровождение">VIP-сопровождение</option>
+                    </select>
+                    <button type="submit" class="btn">Получить план обучения</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">LINGUA EXPERT</div>
+            <p>© 2026 Все права защищены. <a href="index.html">Вернуться на главную</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const langData = {
+            english: {
+                name: 'Английского',
+                flag: '🇬🇧',
+                tagline: 'язык международного общения',
+                description: 'Заговорите свободно и уверенно. Подготовлю к IELTS, TOEFL и бизнес-переговорам за 3 месяца. От уровня A1 до C2.',
+                whyTitle: 'Зачем учить английский?',
+                benefits: [
+                    { icon: '🌍', title: 'Для путешествий', desc: 'Свободно общайтесь в 100+ странах мира. Английский понимают везде.' },
+                    { icon: '💼', title: 'Для карьеры', desc: '80% вакансий в IT, маркетинге и финансах требуют английского. Рост зарплаты — до 40%.' },
+                    { icon: '🎓', title: 'Для учёбы за рубежом', desc: 'IELTS 6.5+ открывает двери в университеты США, Канады, Великобритании.' },
+                    { icon: '💰', title: 'Для фриланса', desc: 'Работайте с клиентами со всего мира. Оплата в валюте — доход в 3-5 раз выше.' },
+                    { icon: '🎬', title: 'Для контента', desc: 'Смотрите фильмы, читайте книги и слушайте подкасты в оригинале — без субтитров.' },
+                    { icon: '🧠', title: 'Для мозга', desc: 'Изучение языков улучшает память, внимание и защищает от деменции.' }
+                ],
+                program: [
+                    { num: '01', title: 'Диагностика уровня', desc: 'Определим вашу стартовую точку и составим персональный план.' },
+                    { num: '02', title: 'Постановка произношения', desc: 'Уберём акцент, отработаем сложные звуки: th, r, w, æ.' },
+                    { num: '03', title: 'Разговорная практика', desc: '80% урока — говорите вы. Реальные ситуации: аэропорт, кафе, интервью.' },
+                    { num: '04', title: 'Грамматика без скуки', desc: 'Никаких зубрёжек. Всё через примеры из жизни и современного контента.' },
+                    { num: '05', title: 'Подготовка к экзаменам', desc: 'IELTS, TOEFL, Cambridge — разбираем каждое задание и стратегию.' }
+                ]
+            },
+            german: {
+                name: 'Немецкого',
+                flag: '🇩🇪',
+                tagline: 'язык порядка и возможностей',
+                description: 'От A1 до C1. Подготовлю к Goethe-Zertifikat и помогу адаптироваться к жизни в Германии, Австрии или Швейцарии.',
+                whyTitle: 'Зачем учить немецкий?',
+                benefits: [
+                    { icon: '🏥', title: 'Бесплатное образование', desc: 'Немецкие университеты бесплатны даже для иностранцев. Нужен только язык.' },
+                    { icon: '💼', title: 'Работа в Германии', desc: 'Инженеры, IT, врачи — Германия активно нанимает специалистов из-за рубежа.' },
+                    { icon: '💶', title: 'Высокие зарплаты', desc: 'Средняя зарплата в Германии — €4000. Знание языка даёт доступ к топ-вакансиям.' },
+                    { icon: '🎓', title: 'Goethe-Zertifikat', desc: 'Официальный сертификат, признанный во всём мире. От A1 до C2.' },
+                    { icon: '🍺', title: 'Культура и пиво', desc: 'Октоберфест, Баварские замки, классическая музыка — всё в оригинале.' },
+                    { icon: '🚗', title: 'Автопром', desc: 'BMW, Mercedes, Audi, Volkswagen — лидеры мирового автопрома.' }
+                ],
+                program: [
+                    { num: '01', title: 'Основы произношения', desc: 'Поставим чёткое немецкое произношение и интонацию.' },
+                    { num: '02', title: 'Базовые конструкции', desc: 'Освоим артикли, падежи и порядок слов — самые сложные темы.' },
+                    { num: '03', title: 'Разговорная практика', desc: 'Учимся говорить с первого занятия — через диалоги и ролевые игры.' },
+                    { num: '04', title: 'Погружение в культуру', desc: 'Понимаем менталитет, обычаи и правила делового общения.' },
+                    { num: '05', title: 'Подготовка к Goethe', desc: 'Разбираем все 4 модуля: Lesen, Hören, Schreiben, Sprechen.' }
+                ]
+            },
+            french: {
+                name: 'Французского',
+                flag: '🇫🇷',
+                tagline: 'язык любви и искусства',
+                description: 'От A1 до C1. Подготовлю к DELF/DALF и открою двери в мир французской культуры, моды и гастрономии.',
+                whyTitle: 'Зачем учить французский?',
+                benefits: [
+                    { icon: '🎨', title: 'Мир искусства', desc: 'Лувр, Орсе, Версаль — французский язык открывает культурную сокровищницу мира.' },
+                    { icon: '🍷', title: 'Гастрономия', desc: 'Читайте меню, понимайте вина и общайтесь с сомелье в оригинале.' },
+                    { icon: '✈️', title: '49 стран', desc: 'Французский — официальный язык в 49 странах. От Канады до Сенегала.' },
+                    { icon: '💼', title: 'Карьера в люксе', desc: 'LVMH, Chanel, Dior, L\'Oréal — все топ-бренды говорят по-французски.' },
+                    { icon: '🎓', title: 'DELF/DALF', desc: 'Официальные дипломы, признанные Министерством образования Франции.' },
+                    { icon: '🎬', title: 'Кино и мода', desc: 'Смотрите французское кино и читайте Vogue Paris без перевода.' }
+                ],
+                program: [
+                    { num: '01', title: 'Мелодика речи', desc: 'Французский — язык интонации. Поставим правильное произношение.' },
+                    { num: '02', title: 'Основы грамматики', desc: 'Артикли, спряжения, времена — от простого к сложному.' },
+                    { num: '03', title: 'Разговорный клуб', desc: 'Обсуждаем кино, моду, кухню — учимся говорить о том, что нравится.' },
+                    { num: '04', title: 'Погружение во Францию', desc: 'Учимся жить как французы: кухня, привычки, общение.' },
+                    { num: '05', title: 'Подготовка к DELF', desc: 'Разбираем экзамен по уровням A1–B2. Все модули и стратегии.' }
+                ]
+            },
+            korean: {
+                name: 'Корейского',
+                flag: '🇰🇷',
+                tagline: 'язык K-Pop и технологий',
+                description: 'От нуля до TOPIK 5. Научу читать хангыль за неделю и говорить на языке дорам, K-Pop и Samsung.',
+                whyTitle: 'Зачем учить корейский?',
+                benefits: [
+                    { icon: '🎤', title: 'K-Pop и дорамы', desc: 'Понимайте любимые песни и сериалы без субтитров. Изучайте язык через контент.' },
+                    { icon: '📱', title: 'Карьера в IT', desc: 'Samsung, LG, Naver, Kakao — лидеры рынка. Знание корейского — конкурентное преимущество.' },
+                    { icon: '🎓', title: 'Обучение в Корее', desc: 'Стипендии GKS, KAIST, SNU. Образование мирового уровня — бесплатно.' },
+                    { icon: '📖', title: 'Лёгкая письменность', desc: 'Хангыль — одна из самых логичных систем письма в мире. Выучите за неделю.' },
+                    { icon: '🍜', title: 'Культура и еда', desc: 'K-BBQ, кимчи, рамен — погружайтесь в культуру через язык.' },
+                    { icon: '🌏', title: 'Экономика Азии', desc: 'Корея — 4-я экономика Азии. Знание языка открывает рынки региона.' }
+                ],
+                program: [
+                    { num: '01', title: 'Хангыль за неделю', desc: 'Читаем и пишем по-корейски через 7 дней. Гарантирую.' },
+                    { num: '02', title: 'Произношение и интонация', desc: 'Отработаем сложные звуки и правила чтения.' },
+                    { num: '03', title: 'Разговорная практика', desc: 'Диалоги из дорам, K-Pop текстов и повседневной жизни.' },
+                    { num: '04', title: 'Иероглифы ханджа', desc: 'Изучаем китайские заимствования — это 60% лексики.' },
+                    { num: '05', title: 'Подготовка к TOPIK', desc: 'Разбираем уровни TOPIK I и TOPIK II. Все модули.' }
+                ]
+            },
+            chinese: {
+                name: 'Китайского',
+                flag: '🇨🇳',
+                tagline: 'язык будущего',
+                description: 'От HSK 1 до HSK 6. Поставлю тоны, научу иероглифам и открою доступ к крупнейшему рынку мира.',
+                whyTitle: 'Зачем учить китайский?',
+                benefits: [
+                    { icon: '🌏', title: '1,4 млрд человек', desc: 'Каждый пятый житель Земли говорит по-китайски. Это язык будущего.' },
+                    { icon: '💼', title: 'Бизнес с Китаем', desc: 'Китай — крупнейший торговый партнёр России. Знание языка = деньги.' },
+                    { icon: '🏭', title: 'Производство', desc: 'Alibaba, Huawei, Xiaomi — работайте напрямую с производителями.' },
+                    { icon: '🎓', title: 'HSK сертификат', desc: 'Официальный экзамен, признанный во всём мире. От HSK 1 до HSK 6.' },
+                    { icon: '🍜', title: 'Культура 5000 лет', desc: 'Китайская кухня, медицина, философия — всё в оригинале.' },
+                    { icon: '📈', title: 'Экономика №1', desc: 'К 2030 году Китай станет крупнейшей экономикой мира. Успейте сейчас.' }
+                ],
+                program: [
+                    { num: '01', title: 'Тоны и пиньинь', desc: 'Основа китайского — 4 тона. Поставим правильное произношение.' },
+                    { num: '02', title: 'Иероглифика', desc: 'Изучим 3000 базовых иероглифов через ассоциации и истории.' },
+                    { num: '03', title: 'Разговорная практика', desc: 'Диалоги на каждый день: рынок, ресторан, бизнес.' },
+                    { num: '04', title: 'Деловой китайский', desc: 'Переговоры, переписка, этикет — всё для работы с Китаем.' },
+                    { num: '05', title: 'Подготовка к HSK', desc: 'Разбираем HSK 1–6. Все уровни и стратегии сдачи.' }
+                ]
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const langKey = params.get('lang') || 'english';
+        const data = langData[langKey] || langData.english;
+
+        document.title = `Изучение ${data.name} | LINGUA EXPERT`;
+        document.getElementById('langFlag').textContent = data.flag;
+        document.getElementById('langName').textContent = data.name;
+        document.getElementById('langTagline').textContent = data.tagline;
+        document.getElementById('langDescription').textContent = data.description;
+        document.getElementById('whyTitle').textContent = data.whyTitle;
+
+        const benefitsGrid = document.getElementById('benefitsGrid');
+        data.benefits.forEach(b => {
+            benefitsGrid.innerHTML += `
+                <div class="benefit-card">
+                    <span class="benefit-icon">${b.icon}</span>
+                    <h3>${b.title}</h3>
+                    <p>${b.desc}</p>
+                </div>
+            `;
+        });
+
+        const programList = document.getElementById('programList');
+        data.program.forEach(p => {
+            programList.innerHTML += `
+                <div class="program-item">
+                    <div class="program-num">${p.num}</div>
+                    <div class="program-content">
+                        <h3>${p.title}</h3>
+                        <p>${p.desc}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        function selectTariff(name) {
+            const select = document.getElementById('tariff-select');
+            if (select) select.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                select.focus();
+                select.style.boxShadow = '0 0 0 4px rgba(212, 175, 55, 0.5)';
+                setTimeout(() => select.style.boxShadow = '', 1500);
+            }, 500);
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const name = event.target.querySelector('input[type="text"]').value;
+            const contact = event.target.querySelector('input[type="tel"]').value;
+            const btn = event.target.querySelector('.btn');
+            const original = btn.textContent;
+            btn.textContent = '✓ Отправлено!';
+            btn.style.background = '#28a745';
+            btn.style.color = '#fff';
+
+            setTimeout(() => {
+                alert('Спасибо, ' + name + '! Ваша заявка на курс ' + data.name.replace('ого','ый') + ' принята.\nАлександр свяжется с вами по контакту: ' + contact + ' в течение 15 минут.');
+                btn.textContent = original;
+                btn.style.background = '';
+                btn.style.color = '';
+                event.target.reset();
+            }, 800);
+        }
+    </script>
+</body>
+</html>
